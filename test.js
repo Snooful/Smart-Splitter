@@ -25,7 +25,7 @@ describe("smartSplitter.split", () => {
 	});
 	
 	it("doesn't split if whole string is quoted", () => {
-		assert.deepEqual(split("'" + text "'"), [
+		assert.deepEqual(split("'" + text + "'"), [
 			text,
 		]);
 	});
