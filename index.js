@@ -1,3 +1,14 @@
+/**
+ * @typedef Quotations
+ * @type {Object}
+ * @property {string} start The start character.
+ * @property {string} end The end character.
+ */
+
+/**
+ * Pairs of quotations.
+ * @type {Quotations[]}
+ */
 const defQuotes = [
 	// Double
 	{
@@ -26,6 +37,14 @@ const defQuotes = [
 	},
 ];
 
+/**
+ * Splits a string.
+ * @param {string} text The text to split.
+ * @param {number} count The number of elements to split the text into.
+ * @param {string} splitter The thing to split by.
+ * @param {Quotations[]} quotes The quote pairs to accept.
+ * @returns {string[]}
+ */
 function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) {
 	const out = [];
 
@@ -53,7 +72,5 @@ function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) 
 	return out;
 }
 
-module.exports = {
-	split,
-	quotes: defQuotes,
-};
+module.exports.split = split;
+module.exports.quotes = defQuotes;
