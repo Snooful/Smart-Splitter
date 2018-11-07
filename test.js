@@ -9,23 +9,23 @@ describe("smartSplitter.split", () => {
 	});
 	
 	it("returns an array of strings", () => {
-		split(text).forEach(item => {
+		smartSplitter.split(text).forEach(item => {
 			assert.isString(item);
 		});
 	});
 	
 	it("has as many items as dumb split by space", () => {
-		assert.equal(split(text).length, text.split(" ").length);
+		assert.equal(smartSplitter.split(text).length, text.split(" ").length);
 	});
 
 	it("doesn't split if count is 0", () => {
-		assert.deepEqual(split(text, 0), [
+		assert.deepEqual(smartSplitter.split(text, 0), [
 			text,
 		]);
 	});
 	
 	it("doesn't split if whole string is quoted", () => {
-		assert.deepEqual(split("'" + text + "'"), [
+		assert.deepEqual(smartSplitter.split("'" + text + "'"), [
 			text,
 		]);
 	});
@@ -33,7 +33,7 @@ describe("smartSplitter.split", () => {
 	 
 describe("smartSplitter.quotes", () => {
 	it("is an array", () => {
-		asset.isArray(smartSplitter.quotes);
+		assert.isArray(smartSplitter.quotes);
 	});
 	
 	it("each item is an object", () => {
