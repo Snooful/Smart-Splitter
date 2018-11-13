@@ -1,8 +1,8 @@
 /**
  * @typedef Quotations
  * @type {Object}
- * @property {string} start The start character.
  * @property {string} end The end character.
+ * @property {string} start The start character.
  */
 
 /**
@@ -12,28 +12,28 @@
 const defQuotes = [
 	// Double
 	{
-		start: '"',
-		end: '"',
+		end: "\"",
+		start: "\"",
 	},
 	// Smart double
 	{
-		start: "“",
 		end: "”",
+		start: "“",
 	},
 	// Single
 	{
-		start: "'",
 		end: "'",
+		start: "'",
 	},
 	// Smart single
 	{
-		start: "‘",
 		end: "’",
+		start: "‘",
 	},
 	// Guillemets
 	{
-		start: "«",
 		end: "»",
+		start: "«",
 	},
 ];
 
@@ -66,17 +66,25 @@ function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) 
 	out.push("");
 	chars.forEach((char, index) => {
 		if (all([
-			!inQuote, // Don't start quote inside another
-			startQuotes.includes(char), // Must be a starting quote
-			out[out.length - 1].length === 0, // At the start of a new split
+			// Don't start quote inside another
+			!inQuote,
+			// Must be a starting quote
+			startQuotes.includes(char),
+			// Must be at the start of a new split
+			out[out.length - 1].length === 0,
 		])) {
 			inQuote = startQuotes.indexOf(char);
 		} else if (all([
-			inQuote, // Don't end quote when not inside one
-			endQuotes[inQuote] === char, // Quote must match the start
-			index > 0, // Making sure we don't get an OoB character
-			chars[index - 1] !== "\\", // Is not escaped
-			[" ", undefined].includes(chars[index + 1]) // Next character is a space or end of string (end of split)
+			// Don't end quote when not inside one
+			inQuote,
+			// End quote must match the start quote
+			endQuotes[inQuote] === char,
+			// Making sure we don't get an OoB character
+			index > 0,
+			// Quote shouldn't be escaped
+			chars[index - 1] !== "\\",
+			// Next character is a space or end of string (end of split)
+			[" ", undefined].includes(chars[index + 1]),
 		])) {
 			inQuote = false;
 		} else if (all([
