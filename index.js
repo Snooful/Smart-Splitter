@@ -98,7 +98,10 @@ function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) 
 	});
 
 	const emptyStrFix = out.map(item => item === "" ? undefined : item);
-	const undefPadded = Number.isSafeInteger(count) ? emptyStrFix.concat(new Array(count - emptyStrFix.length).fill(undefined)) : emptyStrFix;
+
+	const neededElems = count - emptyStrFix.length;
+	const undefPadded = Number.isSafeInteger(neededElems) && neededElems >= 0 ? emptyStrFix.concat(new Array(neededElems).fill(undefined)) : emptyStrFix;
+
 	return undefPadded;
 }
 
