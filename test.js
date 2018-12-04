@@ -31,6 +31,19 @@ describe("smartSplitter.split", () => {
 			text,
 		]);
 	});
+
+	it("pads with undefineds if missing enough splits", () => {
+		assert.deepEqual(smartSplitter.split(text, 8), [
+			"Hello,",
+			"world!",
+			"This",
+			"is",
+			"an",
+			"example.",
+			undefined,
+			undefined,
+		]);
+	});
 });
 
 describe("smartSplitter.quotes", () => {
