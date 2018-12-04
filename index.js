@@ -97,7 +97,8 @@ function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) 
 		}
 	});
 
-	const undefPadded = out.concat(new Array(count - out.length).fill(undefined));
+	const emptyStrFix = out.map(item => item === "" ? undefined : item);
+	const undefPadded = emptyStrFix.concat(new Array(count - emptyStrFix.length).fill(undefined));
 	return undefPadded;
 }
 
