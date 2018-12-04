@@ -49,12 +49,12 @@ function all(conditions = []) {
 /**
  * Splits a string.
  * @param {string} text The text to split.
- * @param {number} count The number of elements to split the text into.
- * @param {string} splitter The thing to split by.
+ * @param {number} maxSplits The number of elements to split the text into.
+ * @param {string} splitBy The thing to split by.
  * @param {Quotations[]} quotes The quote pairs to accept.
  * @returns {string[]}
  */
-function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) {
+function split(text = "", maxSplits = Infinity, splitBy = " ", quotes = defQuotes) {
 	const out = [];
 
 	const startQuotes = quotes.map(quote => quote.start);
@@ -88,8 +88,8 @@ function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) 
 		])) {
 			inQuote = false;
 		} else if (all([
-			char === splitter,
-			out.length < count && !inQuote,
+			char === splitBy,
+			out.length < maxSplits && !inQuote,
 		])) {
 			out.push("");
 		} else {
@@ -99,7 +99,7 @@ function split(text = "", count = Infinity, splitter = " ", quotes = defQuotes) 
 
 	const emptyStrFix = out.map(item => item === "" ? undefined : item);
 
-	const neededElems = count - emptyStrFix.length;
+	const neededElems = maxSplits - emptyStrFix.length;
 	const undefPadded = Number.isSafeInteger(neededElems) && neededElems >= 0 ? emptyStrFix.concat(new Array(neededElems).fill(undefined)) : emptyStrFix;
 
 	return undefPadded;
