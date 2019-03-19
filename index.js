@@ -41,11 +41,13 @@ function all(conditions = []) {
  * Splits a string.
  * @param {string} text The text to split.
  * @param {number} maxSplits The number of elements to split the text into.
- * @param {string} splitBy The thing to split by.
+ * @param {(string|string[])} splitBy A character or multiple characters to split by.
  * @param {Quotations[]} quotes The quote pairs to accept.
  * @returns {string[]}
  */
 function split(text = "", maxSplits = Infinity, splitBy = " ", quotes = defQuotes) {
+	const splitByChars = Array.isArray(splitBy) ? splitBy : [splitBy];
+
 	const out = [];
 
 	const startQuotes = quotes.map(quote => quote.start);
@@ -79,7 +81,7 @@ function split(text = "", maxSplits = Infinity, splitBy = " ", quotes = defQuote
 		])) {
 			inQuote = false;
 		} else if (all([
-			char === splitBy,
+			splitByChars.includes(char),
 			out.length < maxSplits && !inQuote,
 		])) {
 			out.push("");
