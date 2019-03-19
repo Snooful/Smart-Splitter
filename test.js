@@ -51,21 +51,16 @@ describe("smartSplitter.quotes", () => {
 		assert.isArray(smartSplitter.quotes);
 	});
 
-	it("each item is an object", () => {
+	it("each item is an instance of Quotations", () => {
 		smartSplitter.quotes.forEach(quote => {
-			assert.isObject(quote);
+			assert(quote instanceof smartSplitter.Quotations);
 		});
 	});
+});
 
-	it("each quote object has a 'start' string", () => {
-		smartSplitter.quotes.forEach(quote => {
-			assert.isString(quote.start);
-		});
-	});
-
-	it("each quote object has an 'end' string", () => {
-		smartSplitter.quotes.forEach(quote => {
-			assert.isString(quote.end);
-		});
+describe("smartSplitter.Quotations", () => {
+	it("end is same as start if unspecified", () => {
+		const quotation = new smartSplitter.Quotations("'");
+		assert.strictEqual(quotation.start, quotation.end);
 	});
 });
