@@ -1,9 +1,13 @@
 /**
- * @typedef Quotations
- * @type {Object}
  * @property {string} end The end character.
  * @property {string} start The start character.
  */
+class Quotations {
+	constructor(start, end) {
+		this.start = start;
+		this.end = end || start;
+	}
+}
 
 /**
  * Pairs of quotations.
@@ -11,30 +15,15 @@
  */
 const defQuotes = [
 	// Double
-	{
-		end: "\"",
-		start: "\"",
-	},
+	new Quotations("\""),
 	// Smart double
-	{
-		end: "”",
-		start: "“",
-	},
+	new Quotations("“", "”"),
 	// Single
-	{
-		end: "'",
-		start: "'",
-	},
+	new Quotations("'"),
 	// Smart single
-	{
-		end: "’",
-		start: "‘",
-	},
+	new Quotations("‘", "’"),
 	// Guillemets
-	{
-		end: "»",
-		start: "«",
-	},
+	new Quotations("«", "»"),
 ];
 
 /**
