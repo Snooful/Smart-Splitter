@@ -8,6 +8,7 @@ class Quotations {
 		this.end = end || start;
 	}
 }
+module.exports.Quotations = Quotations;
 
 /**
  * Pairs of quotations.
@@ -25,6 +26,7 @@ const defQuotes = [
 	// Guillemets
 	new Quotations("«", "»"),
 ];
+module.exports.quotes = defQuotes;
 
 /**
  * Checks if every value in an array is truthy.
@@ -93,6 +95,4 @@ function split(text = "", maxSplits = Infinity, splitBy = " ", quotes = defQuote
 
 	return undefPadded;
 }
-
 module.exports.split = split;
-module.exports.quotes = defQuotes;
