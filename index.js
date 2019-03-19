@@ -76,8 +76,8 @@ function split(text = "", maxSplits = Infinity, splitBy = " ", quotes = defQuote
 			index > 0,
 			// Quote shouldn't be escaped
 			chars[index - 1] !== "\\",
-			// Next character is a space or end of string (end of split)
-			[" ", undefined].includes(chars[index + 1]),
+			// Next character is a split character or end of string (end of split)
+			[...splitByChars, undefined].includes(chars[index + 1]),
 		])) {
 			inQuote = false;
 		} else if (all([
