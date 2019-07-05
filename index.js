@@ -90,10 +90,10 @@ function split(text = "", maxSplits = Infinity, splitBy = " ", quotes = defQuote
 		}
 	});
 
-	const emptyStrFix = out.map(item => item === "" ? undefined : item);
+	const emptyStringFix = out.map(item => item === "" ? undefined : item);
 
-	const neededElems = maxSplits - emptyStrFix.length;
-	const undefPadded = Number.isSafeInteger(neededElems) && neededElems >= 0 ? emptyStrFix.concat(new Array(neededElems).fill(undefined)) : emptyStrFix;
+	const neededElems = maxSplits - emptyStringFix.length;
+	const undefPadded = Number.isSafeInteger(neededElems) && neededElems >= 0 ? emptyStringFix.concat(new Array(neededElems).fill(undefined)) : emptyStringFix;
 
 	return undefPadded;
 }
